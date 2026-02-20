@@ -1,7 +1,8 @@
-import React, { createContext, useReducer, useCallback, useEffect, type ReactNode } from 'react';
-import type { AppState, ContextType, UpsolveProblem } from '../types';
+import { useReducer, useCallback, useEffect, type ReactNode } from 'react';
+import type { AppState, ContextType, UpsolveProblem, UserInfo, Submission, RatingChange } from '../types';
 import { CodeforcesAPI } from '../services/codeforcesAPI';
 import { findUpsolveProblem, getRecentAcceptedSubmissions } from '../utils/helpers';
+import { AppContext } from './AppContextCreate';
 
 const initialState: AppState = {
   handle: null,
@@ -19,7 +20,7 @@ type Action =
   | { type: 'SET_HANDLE'; payload: string }
   | { type: 'SET_LOADING'; payload: boolean }
   | { type: 'SET_ERROR'; payload: string | null }
-  | { type: 'SET_USER_DATA'; payload: any }
+  | { type: 'SET_USER_DATA'; payload: { userInfo: UserInfo; submissions: Submission[]; ratingHistory: RatingChange[] } }
   | { type: 'UPDATE_UPSOLVE_NOTES'; payload: { problemId: string; notes: string } }
   | { type: 'CLEAR_ERROR' };
 
@@ -74,8 +75,6 @@ function reducer(state: AppState, action: Action): AppState {
       return state;
   }
 }
-
-export const AppContext = createContext<ContextType | undefined>(undefined);
 
 interface AppProviderProps {
   children: ReactNode;
@@ -141,12 +140,4 @@ export function AppProvider({ children }: AppProviderProps) {
       {children}
     </AppContext.Provider>
   );
-}
-
-export function useAppContext() {
-  const context = React.useContext(AppContext);
-  if (context === undefined) {
-    throw new Error('useAppContext must be used within AppProvider');
-  }
-  return context;
 }

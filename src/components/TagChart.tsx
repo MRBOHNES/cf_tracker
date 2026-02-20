@@ -1,5 +1,5 @@
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from 'recharts';
-import { useAppContext } from '../context/AppContext';
+import { useAppContext } from '../hooks/useAppContext';
 import { getTagDistribution } from '../utils/helpers';
 
 const COLORS = ['#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4', '#f97316'];
@@ -27,7 +27,7 @@ export function TagChart() {
             cx="50%"
             cy="50%"
             labelLine={false}
-            label={({ payload }) => `${payload?.tag}: ${payload?.count}` || ''}
+            label={({ payload }) => `${payload?.tag}: ${payload?.count}`}
             outerRadius={80}
             fill="#8884d8"
             dataKey="count"

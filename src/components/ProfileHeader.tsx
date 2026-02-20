@@ -1,4 +1,4 @@
-import { useAppContext } from '../context/AppContext';
+import { useAppContext } from '../hooks/useAppContext';
 import { getRankColor } from '../utils/helpers';
 
 export function ProfileHeader() {

@@ -1,4 +1,4 @@
-import { useAppContext } from '../context/AppContext';
+import { useAppContext } from '../hooks/useAppContext';
 import { timeAgo } from '../utils/helpers';
 
 export function RecentActivity() {

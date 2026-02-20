@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAppContext } from '../context/AppContext';
+import { useAppContext } from '../hooks/useAppContext';
 import { ProfileHeader } from '../components/ProfileHeader';
 import { RecentActivity } from '../components/RecentActivity';
 import { RatingChart } from '../components/RatingChart';
