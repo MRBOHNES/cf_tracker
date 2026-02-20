@@ -4,11 +4,16 @@ import { DashboardPage } from './pages/DashboardPage';
 import './App.css';
 
 function AppContent() {
-  const { handle } = useAppContext();
+  const { handle, loading } = useAppContext();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      {!handle ? <LandingPage /> : <DashboardPage />}
+    <div className="min-h-screen bg-slate-900">
+      {loading && (
+        <div className="flex items-center justify-center min-h-screen">
+          <p className="text-white text-2xl">Loading...</p>
+        </div>
+      )}
+      {!loading && (!handle ? <LandingPage /> : <DashboardPage />)}
     </div>
   );
 }
